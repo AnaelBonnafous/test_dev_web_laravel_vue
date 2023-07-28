@@ -22,17 +22,19 @@ class CelebrityController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): \Inertia\Response
     {
-        //
+        return Inertia::render('Celebrity/Create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCelebrityRequest $request)
+    public function store(StoreCelebrityRequest $request): \Illuminate\Http\RedirectResponse
     {
-        //
+        Celebrity::create($request->validated());
+
+        return to_route('celebrities.index');
     }
 
     /**

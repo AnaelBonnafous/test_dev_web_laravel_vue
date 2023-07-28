@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import { Head, Link } from "@inertiajs/vue3";
 import { Celebrity } from "@/types/index";
 
 defineProps<{
@@ -26,6 +27,14 @@ defineProps<{
                     class="overflow-hidden bg-white shadow-sm dark:bg-gray-800 sm:rounded-lg"
                 >
                     <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <div class="mb-4">
+                            <Link :href="route('celebrities.create')">
+                                <PrimaryButton
+                                    >Nouvelle célébrité</PrimaryButton
+                                >
+                            </Link>
+                        </div>
+
                         <table v-if="celebrities.length" class="w-full">
                             <thead>
                                 <th>ID</th>
