@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CelebrityController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+
+    Route::resource('celebrities', CelebrityController::class);
 });
 
 Route::middleware('auth')->group(function () {
