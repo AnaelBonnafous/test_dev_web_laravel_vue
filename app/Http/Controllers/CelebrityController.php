@@ -64,8 +64,8 @@ class CelebrityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Celebrity $celebrity)
+    public function destroy(Celebrity $celebrity): void
     {
-        //
+        $celebrity->delete();
     }
 }

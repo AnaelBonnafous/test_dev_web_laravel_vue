@@ -1,12 +1,35 @@
 <script setup lang="ts">
+import { ref } from "vue";
+import { Head, Link, router } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
 import { Celebrity } from "@/types/index";
+import Modal from "@/Components/Modal.vue";
 
 defineProps<{
     celebrities: Celebrity[];
 }>();
+
+const showDestroyModal = ref(false);
+const selectedCelebrity = ref<Celebrity | undefined>(undefined);
+
+const openModal = (celebrity: Celebrity) => {
+    selectedCelebrity.value = celebrity;
+    showDestroyModal.value = true;
+};
+const closeModal = () => {
+    showDestroyModal.value = false;
+    selectedCelebrity.value = undefined;
+};
+
+const destroyCelebrity = () => {
+    if (!selectedCelebrity.value) return;
+    router.delete(
+        route("celebrities.destroy", { celebrity: selectedCelebrity.value }),
+        { onFinish: closeModal }
+    );
+};
 </script>
 
 <template>
@@ -37,10 +60,11 @@ defineProps<{
 
                         <table v-if="celebrities.length" class="w-full">
                             <thead>
-                                <th>ID</th>
-                                <th>Prénom</th>
-                                <th>Nom</th>
-                                <th>Description</th>
+                                <th class="text-left">ID</th>
+                                <th class="text-left">Prénom</th>
+                                <th class="text-left">Nom</th>
+                                <th class="text-left">Description</th>
+                                <th class="text-left">Actions</th>
                             </thead>
                             <tbody>
                                 <tr v-for="celebrity in celebrities">
@@ -48,6 +72,12 @@ defineProps<{
                                     <td>{{ celebrity.firstname }}</td>
                                     <td>{{ celebrity.lastname }}</td>
                                     <td>{{ celebrity.description }}</td>
+                                    <td>
+                                        <SecondaryButton
+                                            @click="openModal(celebrity)"
+                                            >Supprimer</SecondaryButton
+                                        >
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -58,5 +88,24 @@ defineProps<{
                 </div>
             </div>
         </div>
+
+        <Modal :show="showDestroyModal">
+            <div class="p-4">
+                <p class="dark:text-white">
+                    Êtes-vous sûr de vouloir supprimer la célébrité "{{
+                        selectedCelebrity?.firstname
+                    }}
+                    {{ selectedCelebrity?.lastname }}" ?
+                </p>
+                <div class="flex items-center justify-end gap-2 mt-4">
+                    <SecondaryButton @click="closeModal"
+                        >Annuler</SecondaryButton
+                    >
+                    <PrimaryButton @click="destroyCelebrity"
+                        >Supprimer la célébrité</PrimaryButton
+                    >
+                </div>
+            </div>
+        </Modal>
     </AuthenticatedLayout>
 </template>
