@@ -73,6 +73,17 @@ const destroyCelebrity = () => {
                                     <td>{{ celebrity.lastname }}</td>
                                     <td>{{ celebrity.description }}</td>
                                     <td>
+                                        <Link
+                                            :href="
+                                                route('celebrities.edit', {
+                                                    celebrity,
+                                                })
+                                            "
+                                        >
+                                            <PrimaryButton
+                                                >Mettre à jour</PrimaryButton
+                                            >
+                                        </Link>
                                         <SecondaryButton
                                             @click="openModal(celebrity)"
                                             >Supprimer</SecondaryButton

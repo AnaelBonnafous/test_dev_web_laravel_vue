@@ -24,7 +24,7 @@ class UpdateCelebrityRequest extends FormRequest
         return [
             'firstname' => 'required|string',
             'lastname' => 'required|string',
-            'image' => 'required|image',
+            'image' => 'sometimes|required|image',
             'description' => 'required|string',
         ];
     }

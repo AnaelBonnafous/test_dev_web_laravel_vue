@@ -48,17 +48,19 @@ class CelebrityController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Celebrity $celebrity)
+    public function edit(Celebrity $celebrity): \Inertia\Response
     {
-        //
+        return Inertia::render('Celebrity/Edit', compact('celebrity'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCelebrityRequest $request, Celebrity $celebrity)
+    public function update(UpdateCelebrityRequest $request, Celebrity $celebrity): \Illuminate\Http\RedirectResponse
     {
-        //
+        $celebrity->update($request->validated());
+
+        return to_route('celebrities.index');
     }
 
     /**
