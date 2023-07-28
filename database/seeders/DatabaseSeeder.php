@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
         ]);
+
+        $this->call(CelebritySeeder::class);
     }
 }
