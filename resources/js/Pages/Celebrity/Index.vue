@@ -71,7 +71,7 @@ const destroyCelebrity = () => {
                                     <td>{{ celebrity.id }}</td>
                                     <td>{{ celebrity.firstname }}</td>
                                     <td>{{ celebrity.lastname }}</td>
-                                    <td>{{ celebrity.description }}</td>
+                                    <td class="line-clamp-3">{{ celebrity.description }}</td>
                                     <td>
                                         <Link
                                             :href="
