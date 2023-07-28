@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCelebrityRequest;
 use App\Http\Requests\UpdateCelebrityRequest;
 use App\Models\Celebrity;
+use Inertia\Inertia;
 
 class CelebrityController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Inertia\Response
     {
-        //
+        $celebrities = Celebrity::all();
+
+        return Inertia::render('Celebrity/Index', compact('celebrities'));
     }
 
     /**
