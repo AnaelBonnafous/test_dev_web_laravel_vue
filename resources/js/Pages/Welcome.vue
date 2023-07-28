@@ -53,11 +53,9 @@ onMounted(() => {
 
         <div class="p-6 mx-auto max-w-7xl lg:p-8">
             <div class="flex flex-col items-center justify-center">
-                <h1 class="mb-8 text-2xl dark:text-white">Profile Browser</h1>
+                <h1 class="mb-8 text-2xl dark:text-white">Navigateur de profil</h1>
                 <!-- Conteneur général -->
-                <div
-                    class="flex flex-col md:flex-row md:gap-4 h-[75vh] profile-browser"
-                >
+                <div class="flex flex-col md:flex-row md:gap-4 h-[75vh]">
                     <!-- Menu des célébrités disponibles -->
                     <ul
                         class="overflow-y-scroll bg-gray-700 rounded-t-lg md:rounded-lg h-[25%] md:h-auto"
@@ -70,9 +68,7 @@ onMounted(() => {
                                 selectedCelebrity?.id === celebrity.id
                                     ? 'bg-white dark:bg-gray-800'
                                     : 'bg-gray-700',
-                                index === 0
-                                    ? 'rounded-t-lg md:rounded-l-lg'
-                                    : '',
+                                { 'rounded-t-lg': index === 0 },
                             ]"
                         >
                             {{ celebrity.firstname }} {{ celebrity.lastname }}
@@ -80,7 +76,7 @@ onMounted(() => {
                     </ul>
                     <!-- Panneau des informations de la célébrité sélectionnée -->
                     <div
-                        class="p-4 overflow-y-scroll bg-white border border-gray-500 rounded-b md:rounded dark:bg-gray-800 w-96 h-[75%] md:h-auto"
+                        class="p-4 overflow-y-scroll bg-white border border-gray-500 rounded-b md:rounded dark:bg-gray-800 max-w-[500px] h-[75%] md:h-auto"
                     >
                         <img
                             :src="'/storage/' + selectedCelebrity?.image"
@@ -96,7 +92,7 @@ onMounted(() => {
                             {{ selectedCelebrity?.lastname }}
                         </h1>
                         <br />
-                        <p class="dark:text-white">
+                        <p class="text-justify dark:text-white">
                             {{ selectedCelebrity?.description }}
                         </p>
                     </div>
@@ -108,10 +104,10 @@ onMounted(() => {
 
 <style scoped>
 /* Hide scrollbar */
-.profile-browser *::-webkit-scrollbar {
+ul::-webkit-scrollbar {
     display: none;
 }
-.profile-browser * {
+ul {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
