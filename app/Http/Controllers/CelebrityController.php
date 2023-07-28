@@ -34,6 +34,10 @@ class CelebrityController extends Controller
     {
         Celebrity::create($request->validated());
 
+        $request->file('image')->storeAs(
+            'public', strtolower($request['firstname'].'_'.$request['lastname']),
+        );
+
         return to_route('celebrities.index');
     }
 
@@ -59,6 +63,10 @@ class CelebrityController extends Controller
     public function update(UpdateCelebrityRequest $request, Celebrity $celebrity): \Illuminate\Http\RedirectResponse
     {
         $celebrity->update($request->validated());
+
+        $request->file('image')->storeAs(
+            'public', strtolower($request['firstname'].'_'.$request['lastname']),
+        );
 
         return to_route('celebrities.index');
     }

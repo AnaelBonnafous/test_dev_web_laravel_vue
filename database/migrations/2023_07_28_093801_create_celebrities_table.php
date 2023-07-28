@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('firstname');
             $table->string('lastname');
-            $table->binary('image');
+            $table->string('image');
             $table->text('description');
             $table->timestamps();
         });

@@ -83,9 +83,13 @@ onMounted(() => {
                         class="p-4 overflow-y-scroll bg-white border border-gray-500 rounded-b md:rounded dark:bg-gray-800 w-96 h-[75%] md:h-auto"
                     >
                         <img
-                            src="https://placehold.co/100"
-                            alt=""
-                            class="float-left pr-2"
+                            :src="'/storage/' + selectedCelebrity?.image"
+                            :alt="
+                                selectedCelebrity?.firstname +
+                                ' ' +
+                                selectedCelebrity?.lastname
+                            "
+                            class="float-left w-[100px] h-[100px] pr-2"
                         />
                         <h1 class="text-xl dark:text-white">
                             {{ selectedCelebrity?.firstname }}

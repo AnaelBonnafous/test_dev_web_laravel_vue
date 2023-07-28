@@ -61,17 +61,30 @@ const destroyCelebrity = () => {
                         <table v-if="celebrities.length" class="w-full">
                             <thead>
                                 <th class="text-left">ID</th>
+                                <th class="text-left">Image</th>
                                 <th class="text-left">Prénom</th>
                                 <th class="text-left">Nom</th>
                                 <th class="text-left">Description</th>
                                 <th class="text-left">Actions</th>
                             </thead>
                             <tbody>
-                                <tr v-for="celebrity in celebrities">
+                                <tr v-for="celebrity in celebrities" class="border-t dark:border-white">
                                     <td>{{ celebrity.id }}</td>
+                                    <td>
+                                        <img
+                                            :src="'/storage/' + celebrity.image"
+                                            :alt="
+                                                celebrity.firstname +
+                                                ' ' +
+                                                celebrity.lastname
+                                            "
+                                        />
+                                    </td>
                                     <td>{{ celebrity.firstname }}</td>
                                     <td>{{ celebrity.lastname }}</td>
-                                    <td class="line-clamp-3">{{ celebrity.description }}</td>
+                                    <td class="line-clamp-3">
+                                        {{ celebrity.description }}
+                                    </td>
                                     <td>
                                         <Link
                                             :href="
