@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('celebrities', function (Blueprint $table) {
             $table->id();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->binary('image');
+            $table->text('description');
             $table->timestamps();
         });
     }

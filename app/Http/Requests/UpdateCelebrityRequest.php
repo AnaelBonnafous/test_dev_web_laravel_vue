@@ -11,7 +11,7 @@ class UpdateCelebrityRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class UpdateCelebrityRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'firstname' => 'required|string',
+            'lastname' => 'required|string',
+            'image' => 'required|image',
+            'description' => 'required|string',
         ];
     }
 }
