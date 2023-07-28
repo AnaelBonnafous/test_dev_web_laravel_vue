@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CelebrityController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Celebrity;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -18,11 +19,12 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+    $celebrities = Celebrity::all();
+
     return Inertia::render('Welcome', [
+        'celebrities' => $celebrities,
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
     ]);
 });
 
